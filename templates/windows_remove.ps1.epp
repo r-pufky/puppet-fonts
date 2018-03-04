@@ -1,0 +1,7 @@
+# Powershell script to delete font file and remove font registry entry.
+# This script will self-delete once executed.
+
+if (Test-Path "<%=$dir%>/<%=$file%>") { Remove-Item "<%=$dir%>/<%=$file%>" }
+Remove-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "<%=$file%>"
+
+Remove-Item -LiteralPath $MyInvocation.MyCommand.Path -Force
